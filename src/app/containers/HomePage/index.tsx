@@ -1,32 +1,15 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import _ from 'lodash';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import Container from 'react-bootstrap/Container';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+// import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
 
-// import { Chrono } from 'react-chrono';
-// import GridLayout from 'react-grid-layout';
 import RGL, { WidthProvider } from 'react-grid-layout';
 
 const ReactGridLayout = WidthProvider(RGL);
-
-function generateLayout(num_items: number) {
-  // const p = this.props;
-  return _.map(new Array(num_items), function (item: any, i: number) {
-    const y = Math.ceil(Math.random() * 4) + 1;
-    return {
-      x: (i * 2) % 12,
-      // Go to the next y value every 6 items added to the layout
-      y: Math.floor(i / 6) * y,
-      w: 2,
-      h: y,
-      i: i.toString(),
-    };
-  });
-}
 
 const itemDetails = [
   {
@@ -113,10 +96,10 @@ function generateTimelineLayout(itemDetails: any[]) {
       const nextW = 2;
       const nextH = 4;
       const createNextXAndYFn = (
-        prevX,
-        prevY,
-        prevW,
-        isPrevItemATimelineSeperator,
+        prevX: number,
+        prevY: number,
+        prevW: number,
+        isPrevItemATimelineSeperator: boolean,
       ) => {
         if (isPrevItemATimelineSeperator) {
           const nextX = 0;
@@ -153,18 +136,38 @@ function generateTimelineLayout(itemDetails: any[]) {
       return [layout, item.date, newMaxY, totalItems + 1];
     },
     [[], null, 0, 0],
-  );
+  )[0];
 }
 
-// function generateDOM(num_items: number) {
-//   return _.map(_.range(num_items), function (i) {
-//     return (
-//       <div key={i}>
-//         <span className="text">{i}</span>
-//       </div>
-//     );
-//   });
-// }
+function generateRandomLayout(numItems: number) {
+  const allItemKeys = _.range(numItems);
+
+  return _.reduce(
+    allItemKeys,
+    function (result: any[], itemKey: number) {
+      const [layout, usedItemKeys] = result;
+
+      const generateRandomKeyFn = (allKeys: any[], usedKeys: any[]) => {
+        const unusedKeys = _.xor(allKeys, usedKeys);
+        return unusedKeys[Math.floor(Math.random() * unusedKeys.length)];
+      };
+      const randomItemKey = generateRandomKeyFn(allItemKeys, usedItemKeys);
+      usedItemKeys.push(randomItemKey);
+
+      const w = Math.ceil(Math.random() * 4);
+      const y = Math.ceil(Math.random() * 4) + 1;
+      layout.push({
+        x: (itemKey * 2) % 12,
+        y: Math.floor(itemKey / 6) * y,
+        w: w,
+        h: y,
+        i: randomItemKey.toString(),
+      });
+      return [layout, usedItemKeys];
+    },
+    [[], []],
+  )[0];
+}
 
 function generateDOM(layout) {
   return _.map(layout, function (item) {
@@ -198,10 +201,10 @@ export function HomePage() {
   //   { i: 'f', x: 0, w: 5, y: 10, h: 4 },
   // ];
 
-  const [layout, ...rest] = generateTimelineLayout(itemDetails);
-  // const num_items = 7;
-  // const layout = generateLayout(num_items);
+  const layout = generateTimelineLayout(itemDetails);
+  // const layout = generateRandomLayout(itemDetails.length);
   console.log(layout);
+  // console.log(randomLayout);
 
   return (
     <>
