@@ -9,17 +9,28 @@ import styled from 'styled-components/macro';
 import RGL, { WidthProvider, Layout } from 'react-grid-layout';
 import _ from 'lodash';
 
+import { Item, ItemWithLayout, ItemDateSeperator, ItemDOM } from '../../types';
+import { BasicCard } from '../BasicCard';
+
 const ReactGridLayout = WidthProvider(RGL);
 
 interface Props {
   layout: Layout[];
+  itemDetails: Item[];
   onLayoutChange: (layout: Layout[]) => void;
   onClickMessItUp: React.MouseEventHandler<HTMLButtonElement>;
   onClickCleanItUp: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const GridLayout = memo(
-  ({ layout, onLayoutChange, onClickMessItUp, onClickCleanItUp }: Props) => {
+  ({
+    layout,
+    itemDetails,
+    onLayoutChange,
+    onClickMessItUp,
+    onClickCleanItUp,
+  }: Props) => {
+    // console.log("here", layout)
     return (
       <Div>
         <div>
@@ -36,7 +47,7 @@ export const GridLayout = memo(
           onLayoutChange={onLayoutChange}
           compactType={null}
         >
-          {generateDOM(layout)}
+          {generateDOM(layout, itemDetails)}
         </ReactGridLayout>
       </Div>
     );
@@ -44,62 +55,6 @@ export const GridLayout = memo(
 );
 
 const Div = styled.div``;
-
-interface ItemImage {
-  url: string;
-}
-
-interface Item {
-  date: string;
-  priority: number;
-  title: string;
-  image: ItemImage;
-  details: string;
-  component: any;
-}
-
-export const itemDetails: Item[] = [
-  {
-    date: '2020-12',
-    priority: 3,
-    title: 'a',
-    image: {
-      url: 'fake_url',
-    },
-    details: 'details about the item.',
-    component: null,
-  },
-  {
-    date: '2020-12',
-    priority: 1,
-    title: 'b',
-    image: {
-      url: 'fake_url',
-    },
-    details: 'details about the item.',
-    component: null,
-  },
-  {
-    date: '2020-12',
-    priority: 1,
-    title: 'c',
-    image: {
-      url: 'fake_url',
-    },
-    details: 'details about the item.',
-    component: null,
-  },
-  {
-    date: '2020-11',
-    priority: 1,
-    title: 'd',
-    image: {
-      url: 'fake_url',
-    },
-    details: 'details about the item.',
-    component: null,
-  },
-];
 
 function isInt(value: any): boolean {
   if (isNaN(value)) {
@@ -148,7 +103,7 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
 
       // TODO: Change width and height based on item priority?
       const nextW = 2;
-      const nextH = 4;
+      const nextH = 8;
       const createNextXAndYFn = (
         prevX: number,
         prevY: number,
@@ -194,7 +149,7 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
 }
 
 export function generateRandomLayout(numItems: number): Layout[] {
-  return _.map(_.range(numItems), function (item, i) {
+  return _.map(_.range(numItems), function (item: any, i: number) {
     const w = Math.ceil(Math.random() * 4);
     const y = Math.ceil(Math.random() * 4) + 1;
     return {
@@ -207,11 +162,63 @@ export function generateRandomLayout(numItems: number): Layout[] {
   });
 }
 
-function generateDOM(layout: Layout[]): any[] {
-  return _.map(layout, function (item) {
+function itemDOMify(
+  itemDetailsWithLayout: (ItemWithLayout | ItemDateSeperator)[],
+): ItemDOM[] {
+  return _.map(itemDetailsWithLayout, (item: any) => {
+    if (item.isDateSeperator) {
+      return item;
+    }
+
+    switch (item.component) {
+      case 'BasicCard':
+        return {
+          ...item,
+          component: BasicCard,
+        };
+      default:
+        return item;
+    }
+  });
+}
+
+function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
+  // Join the layout item with its details.
+
+  const itemDetailsWithLayout = _.map(layout, (layoutItem: any) => {
+    const layoutItemIndex = layoutItem.i;
+    const matchingItemIndex = _.findIndex(itemDetails, (obj: Item): boolean => {
+      return obj.i === layoutItemIndex;
+    });
+    if (matchingItemIndex === -1) {
+      // If theres no match, its a date seperator.
+      return {
+        isDateSeperator: true,
+        component: null,
+        layout: layoutItem,
+      };
+    }
+
+    return {
+      ...itemDetails[matchingItemIndex],
+      layout: layoutItem,
+    };
+  });
+
+  const itemDOMs = itemDOMify(itemDetailsWithLayout);
+
+  return _.map(itemDOMs, (item: ItemDOM) => {
+    const layout = item.layout;
+    if (item.component === null) {
+      return (
+        <div key={layout.i}>
+          <span className="text">{layout.i}</span>
+        </div>
+      );
+    }
     return (
-      <div key={item.i}>
-        <span className="text">{item.i}</span>
+      <div key={layout.i}>
+        <item.component {...item} />
       </div>
     );
   });

@@ -14,3 +14,8 @@ export const selectLayout = createSelector(
   [selectDomain],
   homePageState => homePageState.layout,
 );
+
+export const selectItemDetails = createSelector(
+  [selectDomain],
+  homePageState => homePageState.itemDetails,
+);
