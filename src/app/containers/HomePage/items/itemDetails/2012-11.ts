@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'd',
     image: {
-      url: 'fake_url',
+      name: null,
     },
     details: 'details about the item.',
     component: null,

@@ -11,7 +11,7 @@ export interface HomePageState {
 export type ContainerState = HomePageState;
 
 export interface ItemImage {
-  url: string;
+  name: string | null;
 }
 
 export interface ItemWithoutId {

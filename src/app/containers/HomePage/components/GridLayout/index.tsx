@@ -11,6 +11,7 @@ import _ from 'lodash';
 
 import { Item, ItemWithLayout, ItemDateSeperator, ItemDOM } from '../../types';
 import { BasicCard } from '../BasicCard';
+import { DateSeperator } from '../DateSeperator';
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -82,10 +83,12 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
           // Create the timeline date seperator.
           const timelineSeperator = {
             i: item.date,
-            x: 0,
-            w: 12,
+            x: 5,
+            w: 2,
+            maxW: 2,
             y: maxY,
             h: 1,
+            maxH: 1,
           };
           // NOTE: Functional would make a copy of the array with the newly added element.
           layout.push(timelineSeperator);
@@ -102,7 +105,7 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
       const isPrevItemATimelineSeperator = !isInt(prevItem.i);
 
       // TODO: Change width and height based on item priority?
-      const nextW = 2;
+      const nextW = 4;
       const nextH = 8;
       const createNextXAndYFn = (
         prevX: number,
@@ -167,7 +170,10 @@ function itemDOMify(
 ): ItemDOM[] {
   return _.map(itemDetailsWithLayout, (item: any) => {
     if (item.isDateSeperator) {
-      return item;
+      return {
+        ...item,
+        component: DateSeperator,
+      };
     }
 
     switch (item.component) {
@@ -182,10 +188,8 @@ function itemDOMify(
   });
 }
 
-function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
-  // Join the layout item with its details.
-
-  const itemDetailsWithLayout = _.map(layout, (layoutItem: any) => {
+const joinItemDetailsWithLayout = (layout: Layout[], itemDetails: Item[]) => {
+  return _.map(layout, (layoutItem: any) => {
     const layoutItemIndex = layoutItem.i;
     const matchingItemIndex = _.findIndex(itemDetails, (obj: Item): boolean => {
       return obj.i === layoutItemIndex;
@@ -204,7 +208,11 @@ function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
       layout: layoutItem,
     };
   });
+};
 
+function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
+  // Join the layout item with its details.
+  const itemDetailsWithLayout = joinItemDetailsWithLayout(layout, itemDetails);
   const itemDOMs = itemDOMify(itemDetailsWithLayout);
 
   return _.map(itemDOMs, (item: ItemDOM) => {
@@ -217,7 +225,7 @@ function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
       );
     }
     return (
-      <div key={layout.i}>
+      <div key={layout.i} className="custom-component">
         <item.component {...item} />
       </div>
     );

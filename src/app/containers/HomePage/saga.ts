@@ -17,7 +17,7 @@ export async function fetchItemDetailsFromFilesystem(
         // Dynamic import directory must be static.
         // https://github.com/webpack/webpack/issues/6680#issuecomment-370800037
         const module = await import(
-          'app/containers/HomePage/items/itemDetails/' + itemImport + '.ts'
+          `app/containers/HomePage/items/itemDetails/${itemImport}.ts`
         );
         return module.itemDetailsWithoutId;
       }),
@@ -33,7 +33,8 @@ export function* getItemDetails() {
   );
 
   // Sort by date (Latest date will come first in the array [Descending])
-  const sortedItemDetailsWithoutId = _.sortBy(itemDetailsWithoutIds, [
+  // Reserving the input allows us to order the imported item details correctly.
+  const sortedItemDetailsWithoutId = _.sortBy(itemDetailsWithoutIds.reverse(), [
     (o: ItemWithoutId) => {
       return o.date;
     },

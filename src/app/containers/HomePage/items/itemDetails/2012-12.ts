@@ -5,11 +5,25 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
   {
     date: '2020-12',
     priority: 3,
-    title: 'Created Musher Python Module',
+    title: `
+    <a target="_blank" rel="noopener noreferrer" href="https://github.com/jmaldon1/Musher">
+      <b>Musher: Musical Key Detection Python Module</b>
+    </a>`,
+    details: `
+    <ul>
+      <li>Finished my first python module</li>
+      <li>
+        CI/CD using Github Actions, automated deployment to 
+        <a href="https://pypi.org/project/musher/" target="_blank" rel="noopener noreferrer">
+          PyPI
+        </a>
+      </li>
+      <li>Logic Built with C++ then wrapped in Python</li>
+    </ul>
+    `,
     image: {
-      url: 'app/containers/HomePage/assets/audio_waves.jpg',
+      name: 'audio_waves.jpg',
     },
-    details: 'details about the item.',
     component: 'BasicCard',
   },
   {
@@ -17,7 +31,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'b',
     image: {
-      url: 'fake_url',
+      name: null,
     },
     details: 'details about the item.',
     component: null,
@@ -27,7 +41,17 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'c',
     image: {
-      url: 'fake_url',
+      name: null,
+    },
+    details: 'details about the item.',
+    component: null,
+  },
+  {
+    date: '2020-12',
+    priority: 1,
+    title: 'd',
+    image: {
+      name: null,
     },
     details: 'details about the item.',
     component: null,

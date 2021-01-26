@@ -101,7 +101,10 @@ export const GlobalStyle = createGlobalStyle`
   .react-grid-item {
     box-sizing: border-box;
   }
-  .react-grid-item:not(.react-grid-placeholder) {
+  /* CONTROLS BACKGROUND COLOR AND BORDER
+    Remove generic border and background from custom components
+   */
+  .react-grid-item:not(.react-grid-placeholder):not(.custom-component) {
     background: #ccc;
     border: 1px solid black;
   }

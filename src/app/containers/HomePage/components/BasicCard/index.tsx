@@ -4,41 +4,52 @@
  *
  */
 import React, { memo } from 'react';
-// import styled from 'styled-components/macro';
+import styled from 'styled-components/macro';
 
 import Card from 'react-bootstrap/Card';
 import { ItemImage } from '../../types';
-import testing from 'app/containers/HomePage/assets/audio_waves.jpg';
+import ReactHtmlParser from 'react-html-parser';
 
 interface Props {
   title: string;
+  details: string;
   image: ItemImage;
 }
 
-export const BasicCard = memo(({ title, image }: Props) => {
+export const BasicCard = memo(({ title, details, image }: Props) => {
   return (
-    // <img src={testing}></img>
-    <Card
-      style={{
-        width: '100%',
-        height: '100%',
-        //  Scroll bar only when needed
-        overflow: 'auto',
-      }}
-    >
-      <Card.Img variant="top" src={testing} />
+    <StyleCard>
+      {ShowCardImg(image)}
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content. Some quick example text to build on the
-          card title and make up the bulk of the card's content. Some quick
-          example text to build on the card title and make up the bulk of the
-          card's content.
-        </Card.Text>
+        <Card.Title>{ReactHtmlParser(title)}</Card.Title>
+        {ReactHtmlParser(details)}
       </Card.Body>
-    </Card>
+    </StyleCard>
   );
 });
 
-// const Div = styled.div``;
+const ShowCardImg = (image: ItemImage) => {
+  if (image.name === null) return null;
+  return (
+    <CardImg
+      variant="top"
+      // Need to use .default, something todo with Babel and ES6
+      src={require(`app/containers/HomePage/assets/${image.name}`).default}
+    />
+  );
+};
+
+const StyleCard = styled(Card)`
+  width: 100%;
+  height: 100%;
+  /* Scroll bar only when needed */
+  overflow: auto;
+`;
+
+const CardImg = styled(Card.Img)`
+  max-height: 50%;
+  /* Prevents image from being dragged when trying to drag an item.
+    https://github.com/STRML/react-grid-layout/pull/1283#issuecomment-692085189
+   */
+  pointer-events: none;
+`;
