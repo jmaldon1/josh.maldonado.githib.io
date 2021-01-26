@@ -48,8 +48,4 @@ const StyleCard = styled(Card)`
 
 const CardImg = styled(Card.Img)`
   max-height: 50%;
-  /* Prevents image from being dragged when trying to drag an item.
-    https://github.com/STRML/react-grid-layout/pull/1283#issuecomment-692085189
-   */
-  pointer-events: none;
 `;
