@@ -9,6 +9,7 @@ import styled from 'styled-components/macro';
 import RGL, { WidthProvider, Layout } from 'react-grid-layout';
 import _ from 'lodash';
 
+import { GridLayoutStyle } from './styles';
 import { Item, ItemWithLayout, ItemDateSeperator, ItemDOM } from '../../types';
 import { BasicCard } from '../BasicCard';
 import { DateSeperator } from '../DateSeperator';
@@ -31,7 +32,6 @@ export const GridLayout = memo(
     onClickMessItUp,
     onClickCleanItUp,
   }: Props) => {
-    // console.log("here", layout)
     return (
       <Div>
         <div>
@@ -50,6 +50,7 @@ export const GridLayout = memo(
         >
           {generateDOM(layout, itemDetails)}
         </ReactGridLayout>
+        <GridLayoutStyle />
       </Div>
     );
   },
