@@ -16,7 +16,7 @@ interface Props {
 export const DateSeperator = memo(({ layout }: Props) => {
   const date = layout.i;
   return (
-    <CenteredToast>
+    <CenteredToast className="date-seperator">
       <Toast.Header closeButton={false}>
         <CenteredDiv>
           <strong className="mr-auto">{date}</strong>
@@ -34,7 +34,7 @@ const CenteredDiv = styled.div`
 const CenteredToast = styled(Toast)`
   width: 100%;
   height: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

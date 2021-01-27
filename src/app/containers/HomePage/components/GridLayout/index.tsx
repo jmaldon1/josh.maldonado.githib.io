@@ -13,6 +13,7 @@ import { GridLayoutStyle } from './styles';
 import { Item, ItemWithLayout, ItemDateSeperator, ItemDOM } from '../../types';
 import { BasicCard } from '../BasicCard';
 import { DateSeperator } from '../DateSeperator';
+import { BaseItem } from '../BaseItem';
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -34,12 +35,15 @@ export const GridLayout = memo(
   }: Props) => {
     return (
       <Div>
-        <div>
-          <span>Creativity meets persistence</span>
-        </div>
-        <button onClick={onClickCleanItUp}>Clean it up</button>
-        <button onClick={onClickMessItUp}>Mess it up</button>
+        <TextCenteredDiv>
+          <h1>What am I up too?</h1>
+        </TextCenteredDiv>
+        <TextCenteredDiv>
+          <button onClick={onClickCleanItUp}>Timeline</button>
+          <button onClick={onClickMessItUp}>Randomize</button>
+        </TextCenteredDiv>
         <ReactGridLayout
+          draggableHandle=".draggable"
           layout={layout}
           isBounded={true}
           className="layout"
@@ -57,6 +61,13 @@ export const GridLayout = memo(
 );
 
 const Div = styled.div``;
+
+const TextCenteredDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 function isInt(value: any): boolean {
   if (isNaN(value)) {
@@ -168,15 +179,8 @@ export function generateRandomLayout(numItems: number): Layout[] {
 
 function itemDOMify(
   itemDetailsWithLayout: (ItemWithLayout | ItemDateSeperator)[],
-): ItemDOM[] {
+): (ItemDOM | ItemDateSeperator)[] {
   return _.map(itemDetailsWithLayout, (item: any) => {
-    if (item.isDateSeperator) {
-      return {
-        ...item,
-        component: DateSeperator,
-      };
-    }
-
     switch (item.component) {
       case 'BasicCard':
         return {
@@ -189,7 +193,10 @@ function itemDOMify(
   });
 }
 
-const joinItemDetailsWithLayout = (layout: Layout[], itemDetails: Item[]) => {
+const joinItemDetailsWithLayout = (
+  layout: Layout[],
+  itemDetails: Item[],
+): (ItemWithLayout | ItemDateSeperator)[] => {
   return _.map(layout, (layoutItem: any) => {
     const layoutItemIndex = layoutItem.i;
     const matchingItemIndex = _.findIndex(itemDetails, (obj: Item): boolean => {
@@ -199,7 +206,7 @@ const joinItemDetailsWithLayout = (layout: Layout[], itemDetails: Item[]) => {
       // If theres no match, its a date seperator.
       return {
         isDateSeperator: true,
-        component: null,
+        component: DateSeperator,
         layout: layoutItem,
       };
     }
@@ -211,23 +218,38 @@ const joinItemDetailsWithLayout = (layout: Layout[], itemDetails: Item[]) => {
   });
 };
 
+type ItemDOMUnion = ItemDOM | ItemDateSeperator;
+
 function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
   // Join the layout item with its details.
   const itemDetailsWithLayout = joinItemDetailsWithLayout(layout, itemDetails);
   const itemDOMs = itemDOMify(itemDetailsWithLayout);
 
-  return _.map(itemDOMs, (item: ItemDOM) => {
+  return _.map(itemDOMs, (item: ItemDOMUnion) => {
     const layout = item.layout;
     if (item.component === null) {
+      // We haven't specified the component to use for this item,
+      // so just generate a generic box.
       return (
         <div key={layout.i}>
-          <span className="text">{layout.i}</span>
+          <BaseItem>
+            <span className="text">{layout.i}</span>
+          </BaseItem>
         </div>
       );
     }
     return (
       <div key={layout.i} className="custom-component">
-        <item.component {...item} />
+        {'isDateSeperator' in item ? (
+          // A date seperator is not a base item.
+          <div className="draggable">
+            <item.component {...item} />
+          </div>
+        ) : (
+          <BaseItem>
+            <item.component {...item} />
+          </BaseItem>
+        )}
       </div>
     );
   });
