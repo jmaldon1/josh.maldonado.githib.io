@@ -64,9 +64,7 @@ const Div = styled.div``;
 
 const TextCenteredDiv = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
 `;
 
 function isInt(value: any): boolean {
@@ -97,7 +95,6 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
             i: item.date,
             x: 5,
             w: 2,
-            maxW: 2,
             y: maxY,
             h: 1,
             maxH: 1,
@@ -117,7 +114,7 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
       const isPrevItemATimelineSeperator = !isInt(prevItem.i);
 
       // TODO: Change width and height based on item priority?
-      const nextW = 4;
+      const nextW = 3;
       const nextH = 8;
       const createNextXAndYFn = (
         prevX: number,
@@ -163,15 +160,98 @@ export function generateTimelineLayout(itemDetails: Item[]): Layout[] {
   )[0];
 }
 
+export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
+  return _.reduce(
+    itemDetails,
+    function (
+      result: TimelineReduceResultTuple,
+      item: Item,
+    ): TimelineReduceResultTuple {
+      const createNextResultFn = (
+        result: TimelineReduceResultTuple,
+      ): TimelineReduceResultTuple => {
+        // Create a timeline date seperator or just return the result.
+        const [layout, date, maxY, totalItems] = result;
+        if (date !== item.date && date !== '') {
+          // Create the timeline date seperator.
+          const timelineSeperator = {
+            i: item.date,
+            x: 5,
+            w: 2,
+            y: maxY,
+            h: 1,
+            maxH: 1,
+          };
+          // NOTE: Functional would make a copy of the array with the newly added element.
+          layout.push(timelineSeperator);
+          return [layout, item.date, maxY, totalItems];
+        }
+        return result;
+      };
+
+      const [layout, , maxY, totalItems] = createNextResultFn(result);
+      const prevItem = layout[layout.length - 1];
+      const prevX = prevItem.x;
+      const prevY = prevItem.y;
+      const prevW = prevItem.w;
+      const isPrevItemATimelineSeperator = !isInt(prevItem.i);
+
+      // TODO: Change width and height based on item priority?
+      const nextW = 3;
+      const nextH = 8;
+      const createNextXAndYFn = (
+        prevX: number,
+        prevY: number,
+        prevW: number,
+        isPrevItemATimelineSeperator: boolean,
+      ): [number, number] => {
+        if (isPrevItemATimelineSeperator) {
+          const nextX = 0;
+          const nextY = maxY + 1;
+          return [nextX, nextY];
+        } else {
+          const nextX = prevX + prevW;
+          const nextY = prevY;
+
+          if (nextX + nextW > 12) {
+            // Next item should be put onto the next row
+            return [0, maxY];
+          }
+          return [nextX, nextY];
+        }
+      };
+      const [nextX, nextY] = createNextXAndYFn(
+        prevX,
+        prevY,
+        prevW,
+        isPrevItemATimelineSeperator,
+      );
+
+      const newMaxY = Math.max(maxY, nextY + nextH);
+      const nextItem = {
+        i: totalItems.toString(),
+        x: nextX,
+        w: nextW,
+        y: nextY,
+        h: nextH,
+      };
+      layout.push(nextItem);
+      // create a normal layout item underneath the date layout seperator item
+      return [layout, item.date, newMaxY, totalItems + 1];
+    },
+    [[], '', 1, 0],
+  )[0];
+}
+
 export function generateRandomLayout(numItems: number): Layout[] {
   return _.map(_.range(numItems), function (item: any, i: number) {
-    const w = Math.ceil(Math.random() * 4);
+    // const w = Math.ceil(Math.random() * 4);
     const y = Math.ceil(Math.random() * 4) + 1;
     return {
       x: Math.round(Math.random() * 5) * 2,
       y: Math.floor(i / 6) * y,
-      w: w,
-      h: y,
+      w: 3,
+      h: 8,
       i: i.toString(),
     };
   });

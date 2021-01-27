@@ -34,6 +34,7 @@ const CenteredDiv = styled.div`
 const CenteredToast = styled(Toast)`
   width: 100%;
   height: 100%;
+  max-width: none;
   display: flex;
   justify-content: center;
   align-items: center;

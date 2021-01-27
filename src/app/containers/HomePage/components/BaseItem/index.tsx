@@ -27,7 +27,6 @@ const Div = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 `;
 
 const DragableHandle = styled.div`
