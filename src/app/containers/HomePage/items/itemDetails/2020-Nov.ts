@@ -1,9 +1,8 @@
 import { ItemWithoutId } from '../../types';
-// import { BasicCard } from '../../components/BasicCard';
 
 export const itemDetailsWithoutId: ItemWithoutId[] = [
   {
-    date: '2020-12',
+    date: '2020-Nov',
     priority: 3,
     title: `
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/jmaldon1/Musher">
@@ -25,35 +24,5 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
       name: 'audio_waves.jpg',
     },
     component: 'BasicCard',
-  },
-  {
-    date: '2020-12',
-    priority: 1,
-    title: 'b',
-    image: {
-      name: null,
-    },
-    details: 'details about the item.',
-    component: null,
-  },
-  {
-    date: '2020-12',
-    priority: 1,
-    title: 'c',
-    image: {
-      name: null,
-    },
-    details: 'details about the item.',
-    component: null,
-  },
-  {
-    date: '2020-12',
-    priority: 1,
-    title: 'd',
-    image: {
-      name: null,
-    },
-    details: 'details about the item.',
-    component: null,
   },
 ];
