@@ -20,6 +20,7 @@ import {
   generateRandomLayout,
   generateTimelineLayout,
 } from './components/GridLayout';
+import { PersonalHeader } from './components/PersonalHeader';
 
 interface Props {}
 
@@ -63,9 +64,10 @@ export const HomePage = memo((props: Props) => {
     <>
       <Helmet>
         <title>HomePage</title>
-        <meta name="description" content="Description of HomePage" />
+        <meta name="description" content="Josh's Timeline" />
       </Helmet>
       <Div>
+        <PersonalHeader />
         <GridLayout
           layout={layout}
           itemDetails={itemDetails}

@@ -1,6 +1,7 @@
 import { Layout } from 'react-grid-layout';
 
 import { BasicCard } from './components/BasicCard';
+import { DateSeperator } from './components/DateSeperator';
 
 /* --- STATE --- */
 export interface HomePageState {
@@ -46,7 +47,7 @@ export interface ItemWithLayout {
 
 export interface ItemDateSeperator {
   isDateSeperator: boolean;
-  component: string | null;
+  component: typeof DateSeperator;
   layout: Layout;
 }
 
