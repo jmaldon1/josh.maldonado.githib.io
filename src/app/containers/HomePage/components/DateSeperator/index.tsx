@@ -9,12 +9,14 @@ import styled from 'styled-components/macro';
 import { Layout } from 'react-grid-layout';
 import Toast from 'react-bootstrap/Toast';
 
+import _ from 'lodash';
+
 interface Props {
   layout: Layout;
 }
 
 export const DateSeperator = memo(({ layout }: Props) => {
-  const date = layout.i;
+  const date = _.split(layout.i, '_')[0];
   return (
     <CenteredToast className="date-seperator">
       <Toast.Header closeButton={false}>

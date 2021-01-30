@@ -19,6 +19,7 @@ import {
   GridLayout,
   generateRandomLayout,
   generateTimelineLayout,
+  generateCondensedTimelineLayout,
 } from './components/GridLayout';
 import { PersonalHeader } from './components/PersonalHeader';
 
@@ -58,7 +59,9 @@ export const HomePage = memo((props: Props) => {
   };
 
   const onClickCleanItUp = () => {
-    dispatch(homePageActions.setLayout(generateTimelineLayout(itemDetails)));
+    dispatch(
+      homePageActions.setLayout(generateCondensedTimelineLayout(itemDetails)),
+    );
   };
   return (
     <>

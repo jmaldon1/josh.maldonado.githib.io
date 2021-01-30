@@ -3,6 +3,7 @@ import { homePageActions } from './slice';
 import * as itemImportsJson from './items/itemImports.json';
 import { Item, ItemWithoutId } from './types';
 
+import moment from 'moment';
 import _ from 'lodash';
 
 export async function fetchItemDetailsFromFilesystem(
@@ -35,8 +36,9 @@ export function* getItemDetails() {
   // Sort by date (Latest date will come first in the array [Descending])
   // Reserving the input allows us to order the imported item details correctly.
   const sortedItemDetailsWithoutId = _.sortBy(itemDetailsWithoutIds.reverse(), [
-    (o: ItemWithoutId) => {
-      return o.date;
+    (o: ItemWithoutId): Date => {
+      // Need to convert to a date object to get an accurate sort.
+      return moment(o.date, 'YYYY-MMM').toDate();
     },
   ]).reverse();
 

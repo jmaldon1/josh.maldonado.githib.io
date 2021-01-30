@@ -1,6 +1,7 @@
 /**
  *
  * BaseItem
+ * This is the place to add elements that will appear on all layout items.
  *
  */
 import React, { memo } from 'react';
