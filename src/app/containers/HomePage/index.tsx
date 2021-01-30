@@ -15,12 +15,11 @@ import { selectLayout, selectItemDetails } from './selectors';
 import { homePageSaga } from './saga';
 
 import { Layout } from 'react-grid-layout';
+import { GridLayout } from './components/GridLayout';
 import {
-  GridLayout,
   generateRandomLayout,
-  generateTimelineLayout,
   generateCondensedTimelineLayout,
-} from './components/GridLayout';
+} from './components/GridLayout/generateTimeline';
 import { PersonalHeader } from './components/PersonalHeader';
 
 interface Props {}
