@@ -6,7 +6,7 @@ import { Item } from '../../types';
 type SplitLayout = { [key: string]: Layout[] };
 type CTimelineReduceResultTuple = [SplitLayout, number, string, Layout | null];
 export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
-  // TODO: Change width and height based on item priority?
+  // TODO: Maybe change width and height based on item priority?
   const w = 3;
   const h = 8;
   const cols = 12;
@@ -19,7 +19,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
     ): CTimelineReduceResultTuple => {
       const [splitLayouts, maxY, date, prevItem] = result;
 
-      const isNewRow = (() => {
+      const isNewRow = ((): boolean => {
         // Initial row
         if (prevItem === null) return true;
         // This item needs to overflow to next row.
@@ -48,7 +48,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
           return _.includes(key, item.date);
         });
 
-        const keyName = (() => {
+        const keyName = ((): string => {
           if (isNewRow || date !== item.date) {
             // New key name
             const keyNum = matchingKeys.length;
@@ -58,7 +58,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
           return [...matchingKeys].sort().reverse()[0];
         })();
 
-        const updatedDateSplitLayouts = (() => {
+        const updatedDateSplitLayouts = ((): SplitLayout => {
           if (isNewRow || date !== item.date) {
             return {
               ...splitLayouts,
