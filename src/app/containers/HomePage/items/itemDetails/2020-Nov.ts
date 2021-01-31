@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 3,
     title: `
     <a target="_blank" rel="noopener noreferrer" href="https://github.com/jmaldon1/Musher">
-      <b>Musher: Musical Key Detection Python Module</b>
+      Musher: Musical Key Detection Python Module
     </a>`,
     details: `
     <ul>
