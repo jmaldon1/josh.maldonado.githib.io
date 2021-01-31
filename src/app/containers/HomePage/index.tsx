@@ -52,13 +52,13 @@ export const HomePage = memo((props: Props) => {
     dispatch(homePageActions.setLayout(layout));
   };
 
-  const onClickMessItUp = () => {
+  const onClickRandomize = () => {
     dispatch(
       homePageActions.setLayout(generateRandomLayout(itemDetails.length)),
     );
   };
 
-  const onClickCleanItUp = () => {
+  const onClickTimeline = () => {
     dispatch(
       homePageActions.setLayout(generateCondensedTimelineLayout(itemDetails)),
     );
@@ -76,8 +76,8 @@ export const HomePage = memo((props: Props) => {
           layout={layout}
           itemDetails={itemDetails}
           onLayoutChange={onLayoutChange}
-          onClickMessItUp={onClickMessItUp}
-          onClickCleanItUp={onClickCleanItUp}
+          onClickRandomize={onClickRandomize}
+          onClickTimeline={onClickTimeline}
           showHint={showHint}
         />
       </Div>

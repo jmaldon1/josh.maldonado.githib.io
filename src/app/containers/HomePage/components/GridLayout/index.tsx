@@ -21,8 +21,8 @@ interface Props {
   layout: any;
   itemDetails: Item[];
   onLayoutChange: (layout: Layout[]) => void;
-  onClickMessItUp: React.MouseEventHandler<HTMLButtonElement>;
-  onClickCleanItUp: React.MouseEventHandler<HTMLButtonElement>;
+  onClickTimeline: React.MouseEventHandler<HTMLButtonElement>;
+  onClickRandomize: React.MouseEventHandler<HTMLButtonElement>;
   showHint: boolean;
 }
 
@@ -31,39 +31,17 @@ export const GridLayout = memo(
     layout,
     itemDetails,
     onLayoutChange,
-    onClickMessItUp,
-    onClickCleanItUp,
+    onClickTimeline,
+    onClickRandomize,
     showHint,
   }: Props) => {
     return (
       <Div>
         <TextCenteredDiv>
-          <h4>What am I up to?</h4>
+          <h4 id="Headline">What am I up to?</h4>
         </TextCenteredDiv>
         <TextCenteredDiv>
-          {displayHint(showHint)}
-          <Divider />
-          <button onClick={onClickCleanItUp}>Timeline</button>
-          <small>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L8-L115"
-            >
-              (source code)
-            </a>
-          </small>
-          <Divider />
-          <button onClick={onClickMessItUp}>Randomize</button>
-          <small>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L117-L129"
-            >
-              (source code)
-            </a>
-          </small>
+          {GenerateLayoutButtons(onClickTimeline, onClickRandomize, showHint)}
         </TextCenteredDiv>
         <ReactGridLayout
           draggableHandle=".draggable"
@@ -101,6 +79,40 @@ const TextCenteredDiv = styled.div`
 const displayHint = (showHint: boolean) => {
   if (!showHint) return null;
   return <small>HINT: press this ---&gt;</small>;
+};
+
+const GenerateLayoutButtons = (
+  onClickTimeline: React.MouseEventHandler<HTMLButtonElement>,
+  onClickRandomize: React.MouseEventHandler<HTMLButtonElement>,
+  showHint: boolean,
+) => {
+  return (
+    <div>
+      {displayHint(showHint)}
+      <Divider />
+      <button onClick={onClickTimeline}>Timeline</button>
+      <small>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L8-L115"
+        >
+          (source code)
+        </a>
+      </small>
+      <Divider />
+      <button onClick={onClickRandomize}>Randomize</button>
+      <small>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L117-L129"
+        >
+          (source code)
+        </a>
+      </small>
+    </div>
+  );
 };
 
 function itemDOMify(
