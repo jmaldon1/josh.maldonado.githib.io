@@ -95,7 +95,7 @@ const GenerateLayoutButtons = (
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L8-L115"
+          href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/4ed3a2554a7944678b7cc4fd487893afb9b90e65/src/app/containers/HomePage/components/GridLayout/generateLayouts.ts#L6-L115"
         >
           (source code)
         </a>
@@ -106,7 +106,7 @@ const GenerateLayoutButtons = (
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L117-L129"
+          href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/4ed3a2554a7944678b7cc4fd487893afb9b90e65/src/app/containers/HomePage/components/GridLayout/generateLayouts.ts#L117-L129"
         >
           (source code)
         </a>
