@@ -46,8 +46,7 @@ const generateSemiRandomColor = (
   // Adjust the sum to spread the values out from each other better.
   // Ensure we multiply by a random number so that new colors are generated on page load.
   const adjustedDateAscii =
-    reverseInt(parseInt(Math.pow(dateAsciiSum, 3).toString().slice(0, -3))) *
-    randomNumber;
+    Math.pow(reverseInt(dateAsciiSum), 3) * randomNumber;
   // Goldren ratio provides a more even distribution of colors.
   const goldenRatioConjugate = 0.618033988749895;
   const semiRandomNumber = adjustedDateAscii;
