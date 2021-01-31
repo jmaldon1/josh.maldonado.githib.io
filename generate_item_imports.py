@@ -20,7 +20,10 @@ def main():
     }
     item_import_json_path = os.path.join(items_dir, "itemImports.json")
     with open(item_import_json_path, 'w') as f:
-        json.dump(item_imports, f, indent=4)
+        # print will add contents to a file with a newline at the of the file.
+        # The newline is needed to prevent git from marking the file as changed
+        # each time this script is run.
+        print(json.dumps(item_imports, indent=2), file=f)
     print(f"Successfully wrote {item_import_json_path}")
 
 if __name__ == "__main__":
