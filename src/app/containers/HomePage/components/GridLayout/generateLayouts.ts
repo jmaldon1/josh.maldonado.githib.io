@@ -49,11 +49,11 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
       };
 
       const newDateSplitLayouts = ((): DateSplitLayout => {
-        const matchingKeys = _.filter(_.keys(splitLayouts), (key: string) => {
-          return _.includes(key, item.date);
-        });
-
         const keyName = ((): string => {
+          const matchingKeys = _.filter(_.keys(splitLayouts), (key: string) => {
+            return _.includes(key, item.date);
+          });
+
           if (isNewRow || date !== item.date) {
             // New key name
             const keyNum = matchingKeys.length;
