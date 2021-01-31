@@ -5,7 +5,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     date: '2019-Jun',
     priority: 1,
     title: `
-    <a href="https://medium.com/hackernoon/learning-bitcoins-lightning-network-with-go-set-up-deea944b920e target="_blank" rel="noopener noreferrer"">
+    <a href="https://medium.com/hackernoon/learning-bitcoins-lightning-network-with-go-set-up-deea944b920e" target="_blank" rel="noopener noreferrer">
       Learning Bitcoin’s Lightning Network with Go (Set up)
     </a>
     `,
