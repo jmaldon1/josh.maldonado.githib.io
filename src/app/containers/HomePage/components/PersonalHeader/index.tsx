@@ -17,9 +17,6 @@ export const PersonalHeader = memo((props: Props) => {
       <MarginDiv>
         <InnerDiv>
           <MarginH1 id="name">Joshua Maldonado</MarginH1>
-          <b>
-            <i id="tag-line">Creativity meets persistence</i>
-          </b>
           <p id="occupation">Software Engineer</p>
         </InnerDiv>
         <span id="socials">

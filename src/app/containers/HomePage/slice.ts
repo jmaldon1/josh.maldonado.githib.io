@@ -8,19 +8,24 @@ import { Layout } from 'react-grid-layout';
 export const initialState: ContainerState = {
   layout: [],
   itemDetails: [],
+  showHint: true,
 };
 
 const homePageSlice = createSlice({
   name: 'homePage',
   initialState,
   reducers: {
-    // someAction(state, action: PayloadAction<any>) {},
-    loadItems(state) {},
+    loadItems(state) {
+      // Empty action, just used to trigger the saga.
+    },
     setLayout(state, action: PayloadAction<Layout[]>) {
       state.layout = action.payload;
     },
     setItemDetails(state, action: PayloadAction<Item[]>) {
       state.itemDetails = action.payload;
+    },
+    stopShowingHint(state) {
+      state.showHint = false;
     },
   },
 });

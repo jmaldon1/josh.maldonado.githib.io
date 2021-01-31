@@ -23,6 +23,7 @@ interface Props {
   onLayoutChange: (layout: Layout[]) => void;
   onClickMessItUp: React.MouseEventHandler<HTMLButtonElement>;
   onClickCleanItUp: React.MouseEventHandler<HTMLButtonElement>;
+  showHint: boolean;
 }
 
 export const GridLayout = memo(
@@ -32,15 +33,37 @@ export const GridLayout = memo(
     onLayoutChange,
     onClickMessItUp,
     onClickCleanItUp,
+    showHint,
   }: Props) => {
     return (
       <Div>
         <TextCenteredDiv>
-          <h1>What am I up to?</h1>
+          <h4>What am I up to?</h4>
         </TextCenteredDiv>
         <TextCenteredDiv>
+          {displayHint(showHint)}
+          <Divider />
           <button onClick={onClickCleanItUp}>Timeline</button>
+          <small>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L8-L115"
+            >
+              (source code)
+            </a>
+          </small>
+          <Divider />
           <button onClick={onClickMessItUp}>Randomize</button>
+          <small>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/jmaldon1/josh.maldonado.githib.io/blob/fd263d094d34a1f33b1b16a177c04705fc8fa7b6/src/app/containers/HomePage/components/GridLayout/generateTimeline.ts#L117-L129"
+            >
+              (source code)
+            </a>
+          </small>
         </TextCenteredDiv>
         <ReactGridLayout
           draggableHandle=".draggable"
@@ -64,10 +87,21 @@ export const GridLayout = memo(
 
 const Div = styled.div``;
 
+const Divider = styled.div`
+  width: 15px;
+  height: auto;
+  display: inline-block;
+`;
+
 const TextCenteredDiv = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+const displayHint = (showHint: boolean) => {
+  if (!showHint) return null;
+  return <small>HINT: press this ---&gt;</small>;
+};
 
 function itemDOMify(
   itemDetailsWithLayout: (ItemWithLayout | ItemDateSeperator)[],

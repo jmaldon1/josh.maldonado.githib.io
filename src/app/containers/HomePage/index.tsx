@@ -11,7 +11,7 @@ import styled from 'styled-components/macro';
 
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { homePageActions, reducer, sliceKey } from './slice';
-import { selectLayout, selectItemDetails } from './selectors';
+import { selectLayout, selectItemDetails, selectShowHint } from './selectors';
 import { homePageSaga } from './saga';
 
 import { Layout } from 'react-grid-layout';
@@ -19,7 +19,7 @@ import { GridLayout } from './components/GridLayout';
 import {
   generateRandomLayout,
   generateCondensedTimelineLayout,
-} from './components/GridLayout/generateTimeline';
+} from './components/GridLayout/generateLayouts';
 import { PersonalHeader } from './components/PersonalHeader';
 
 interface Props {}
@@ -31,6 +31,7 @@ export const HomePage = memo((props: Props) => {
   const dispatch = useDispatch();
   const itemDetails = useSelector(selectItemDetails);
   const layout = useSelector(selectLayout);
+  const showHint = useSelector(selectShowHint);
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +62,7 @@ export const HomePage = memo((props: Props) => {
     dispatch(
       homePageActions.setLayout(generateCondensedTimelineLayout(itemDetails)),
     );
+    dispatch(homePageActions.stopShowingHint());
   };
   return (
     <>
@@ -76,6 +78,7 @@ export const HomePage = memo((props: Props) => {
           onLayoutChange={onLayoutChange}
           onClickMessItUp={onClickMessItUp}
           onClickCleanItUp={onClickCleanItUp}
+          showHint={showHint}
         />
       </Div>
     </>

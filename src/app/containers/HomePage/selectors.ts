@@ -19,3 +19,8 @@ export const selectItemDetails = createSelector(
   [selectDomain],
   homePageState => homePageState.itemDetails,
 );
+
+export const selectShowHint = createSelector(
+  [selectDomain],
+  homePageState => homePageState.showHint,
+);

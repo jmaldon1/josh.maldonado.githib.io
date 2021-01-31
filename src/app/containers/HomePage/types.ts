@@ -7,6 +7,7 @@ import { DateSeperator } from './components/DateSeperator';
 export interface HomePageState {
   layout: Layout[];
   itemDetails: Item[];
+  showHint: boolean;
 }
 
 export type ContainerState = HomePageState;
