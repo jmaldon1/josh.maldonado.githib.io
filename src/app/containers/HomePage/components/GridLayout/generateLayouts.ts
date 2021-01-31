@@ -3,15 +3,20 @@ import { Layout } from 'react-grid-layout';
 
 import { Item } from '../../types';
 
-type SplitLayout = { [key: string]: Layout[] };
-type CTimelineReduceResultTuple = [SplitLayout, number, string, Layout | null];
+type DateSplitLayout = { [key: string]: Layout[] };
+type CTimelineReduceResultTuple = [
+  DateSplitLayout,
+  number,
+  string,
+  Layout | null,
+];
 export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
   // TODO: Maybe change width and height based on item priority?
   const w = 3;
   const h = 8;
   const cols = 12;
 
-  const dateSplitLayouts = _.reduce(
+  const dateSplitLayouts: DateSplitLayout = _.reduce(
     itemDetails,
     (
       result: CTimelineReduceResultTuple,
@@ -43,7 +48,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
         h: h,
       };
 
-      const newDateSplitLayouts = ((): SplitLayout => {
+      const newDateSplitLayouts = ((): DateSplitLayout => {
         const matchingKeys = _.filter(_.keys(splitLayouts), (key: string) => {
           return _.includes(key, item.date);
         });
@@ -58,7 +63,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
           return [...matchingKeys].sort().reverse()[0];
         })();
 
-        const updatedDateSplitLayouts = ((): SplitLayout => {
+        const updatedDateSplitLayouts = ((): DateSplitLayout => {
           if (isNewRow || date !== item.date) {
             return {
               ...splitLayouts,
@@ -90,7 +95,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
     [{}, -1, '', null],
   )[0];
 
-  const splitLayouts = _.map(
+  const splitLayouts: Layout[][] = _.map(
     dateSplitLayouts,
     (layouts: Layout[], date: string) => {
       const firstElement = _.head(layouts);
