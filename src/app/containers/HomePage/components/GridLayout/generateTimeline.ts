@@ -9,6 +9,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
   // TODO: Change width and height based on item priority?
   const w = 3;
   const h = 8;
+  const cols = 12;
 
   const dateSplitLayouts = _.reduce(
     itemDetails,
@@ -22,7 +23,7 @@ export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
         // Initial row
         if (prevItem === null) return true;
         // This item needs to overflow to next row.
-        if (prevItem.x + prevItem.w + w > 12) return true;
+        if (prevItem.x + prevItem.w + w > cols) return true;
         return false;
       })();
 
