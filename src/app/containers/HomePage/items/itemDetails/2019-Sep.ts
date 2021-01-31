@@ -10,7 +10,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     },
     details: `
     <ul>
-      <li>Attended my first programming conferece.</li>
+      <li>Attended my first programming conference.</li>
       <li>Was shown programming from many new perspectives.</li>
       <li>Learned about many new technologies and current work going on.</li>
       <li>Interacted with many innovators in various spaces.</li>
