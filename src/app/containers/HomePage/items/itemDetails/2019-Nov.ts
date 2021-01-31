@@ -12,8 +12,8 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     Goals:
     <ul>
       <li>Detect the key of a song given a music file.</li>
-      <li>Allow it to run on any platform.</li>
       <li>Use C++ logic for speed benefits.</li>
+      <li>Allow it to run on any platform.</li>
       <li>Use Python as a wrapper for ease of use.</li>
       <li><a href="https://github.com/jmaldon1/Musher" target="_blank" rel="noopener noreferrer"">Source code</a></li>
     </ul>
