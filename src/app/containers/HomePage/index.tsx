@@ -11,7 +11,12 @@ import styled from 'styled-components/macro';
 
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { homePageActions, reducer, sliceKey } from './slice';
-import { selectLayout, selectItemDetails, selectShowHint } from './selectors';
+import {
+  selectLayout,
+  selectItemDetails,
+  selectShowHint,
+  selectRandomNumber,
+} from './selectors';
 import { homePageSaga } from './saga';
 
 import { Layout } from 'react-grid-layout';
@@ -32,6 +37,7 @@ export const HomePage = memo((props: Props) => {
   const itemDetails = useSelector(selectItemDetails);
   const layout = useSelector(selectLayout);
   const showHint = useSelector(selectShowHint);
+  const randomNumber = useSelector(selectRandomNumber);
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,6 +85,7 @@ export const HomePage = memo((props: Props) => {
           onClickRandomize={onClickRandomize}
           onClickTimeline={onClickTimeline}
           showHint={showHint}
+          randomNumber={randomNumber}
         />
       </Div>
     </>

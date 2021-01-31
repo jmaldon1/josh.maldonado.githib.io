@@ -24,6 +24,7 @@ interface Props {
   onClickTimeline: React.MouseEventHandler<HTMLButtonElement>;
   onClickRandomize: React.MouseEventHandler<HTMLButtonElement>;
   showHint: boolean;
+  randomNumber: number;
 }
 
 export const GridLayout = memo(
@@ -34,6 +35,7 @@ export const GridLayout = memo(
     onClickTimeline,
     onClickRandomize,
     showHint,
+    randomNumber,
   }: Props) => {
     return (
       <Div>
@@ -55,7 +57,7 @@ export const GridLayout = memo(
           onLayoutChange={onLayoutChange}
           compactType={null}
         >
-          {generateDOM(layout, itemDetails)}
+          {generateDOM(layout, itemDetails, randomNumber)}
         </ReactGridLayout>
         <GridLayoutStyle />
       </Div>
@@ -158,7 +160,11 @@ const joinItemDetailsWithLayout = (
 
 type ItemDOMUnion = ItemDOM | ItemDateSeperator;
 
-function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
+function generateDOM(
+  layout: Layout[],
+  itemDetails: Item[],
+  randomNumber: number,
+): JSX.Element[] {
   // Join the layout item with its details.
   const itemDetailsWithLayout = joinItemDetailsWithLayout(layout, itemDetails);
   const itemDOMs = itemDOMify(itemDetailsWithLayout);
@@ -181,7 +187,7 @@ function generateDOM(layout: Layout[], itemDetails: Item[]): any[] {
         {'isDateSeperator' in item ? (
           // A date seperator is not a base item.
           <div className="draggable">
-            <item.component {...item} />
+            <item.component {...item} randomNumber={randomNumber} />
           </div>
         ) : (
           <BaseItem>

@@ -9,6 +9,7 @@ export const initialState: ContainerState = {
   layout: [],
   itemDetails: [],
   showHint: true,
+  randomNumber: Math.random(),
 };
 
 const homePageSlice = createSlice({

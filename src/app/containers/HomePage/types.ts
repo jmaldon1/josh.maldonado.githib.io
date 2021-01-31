@@ -8,6 +8,7 @@ export interface HomePageState {
   layout: Layout[];
   itemDetails: Item[];
   showHint: boolean;
+  randomNumber: number;
 }
 
 export type ContainerState = HomePageState;

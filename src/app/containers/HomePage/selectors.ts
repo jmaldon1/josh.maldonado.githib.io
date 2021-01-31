@@ -24,3 +24,8 @@ export const selectShowHint = createSelector(
   [selectDomain],
   homePageState => homePageState.showHint,
 );
+
+export const selectRandomNumber = createSelector(
+  [selectDomain],
+  homePageState => homePageState.randomNumber,
+);
