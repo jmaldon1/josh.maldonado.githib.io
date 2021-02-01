@@ -185,16 +185,22 @@ function generateDOM(
         </div>
       );
     }
+
+    const additionalBaseItemProps = {};
+    const additionalDateSepProps = {
+      randomNumber,
+    };
+
     return (
       <div key={layout.i} className="custom-component">
         {'isDateSeperator' in item ? (
           // A date seperator is not a base item.
           <div className="draggable">
-            <item.component {...item} randomNumber={randomNumber} />
+            <item.component {...item} {...additionalDateSepProps} />
           </div>
         ) : (
           <BaseItem>
-            <item.component {...item} />
+            <item.component {...item} {...additionalBaseItemProps} />
           </BaseItem>
         )}
       </div>

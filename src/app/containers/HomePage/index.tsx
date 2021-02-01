@@ -87,8 +87,9 @@ export const HomePage = memo((props: Props) => {
       xxs: generateCondensedTimelineLayout(itemDetails, 3),
     };
     dispatch(homePageActions.setLayouts(allLayouts));
-    dispatch(homePageActions.stopShowingHint());
+    dispatch(homePageActions.hideHint());
   };
+
   return (
     <>
       <Helmet>

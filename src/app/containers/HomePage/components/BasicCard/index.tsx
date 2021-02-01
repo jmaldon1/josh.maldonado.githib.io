@@ -7,8 +7,9 @@ import React, { memo } from 'react';
 import styled from 'styled-components/macro';
 
 import Card from 'react-bootstrap/Card';
-import { ItemImage } from '../../types';
 import ReactHtmlParser from 'react-html-parser';
+
+import { ItemImage } from '../../types';
 
 interface Props {
   title: string;

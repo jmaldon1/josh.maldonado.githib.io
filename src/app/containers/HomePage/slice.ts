@@ -31,7 +31,7 @@ const homePageSlice = createSlice({
     setItemDetails(state, action: PayloadAction<Item[]>) {
       state.itemDetails = action.payload;
     },
-    stopShowingHint(state) {
+    hideHint(state) {
       state.showHint = false;
     },
   },
