@@ -91,7 +91,9 @@ const LayoutButtons = (
     <div>
       {displayHint(showHint)}
       <Divider />
-      <button onClick={onClickTimeline}>Timeline</button>
+      <button id="timeline-button" onClick={onClickTimeline}>
+        Timeline
+      </button>
       <small>
         <a
           target="_blank"
@@ -102,7 +104,9 @@ const LayoutButtons = (
         </a>
       </small>
       <Divider />
-      <button onClick={onClickRandomize}>Randomize</button>
+      <button id="randomize-button" onClick={onClickRandomize}>
+        Randomize
+      </button>
       <small>
         <a
           target="_blank"
