@@ -27,7 +27,12 @@ import {
 } from './components/GridLayout/generateLayouts';
 import { PersonalHeader } from './components/PersonalHeader';
 
+import ReactGA from 'react-ga';
 import _ from 'lodash';
+
+// Google Analytics
+ReactGA.initialize('G-814B22G7SF');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 interface Props {}
 
