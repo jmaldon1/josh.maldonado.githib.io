@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 export function App() {
   const { i18n } = useTranslation();
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/josh.maldonado.githib.io">
       <Helmet
         titleTemplate="Josh Maldonado - %s"
         defaultTitle="Josh Maldonado"
