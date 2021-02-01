@@ -10,11 +10,13 @@ type CTimelineReduceResultTuple = [
   string,
   Layout | null,
 ];
-export function generateCondensedTimelineLayout(itemDetails: Item[]): Layout[] {
+export function generateCondensedTimelineLayout(
+  itemDetails: Item[],
+  cols: number = 12,
+): Layout[] {
   // TODO: Maybe change width and height based on item priority?
   const w = 3;
   const h = 8;
-  const cols = 12;
 
   const dateSplitLayouts: DateSplitLayout = _.reduce(
     itemDetails,

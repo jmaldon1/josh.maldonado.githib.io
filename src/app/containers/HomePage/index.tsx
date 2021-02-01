@@ -12,20 +12,22 @@ import styled from 'styled-components/macro';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { homePageActions, reducer, sliceKey } from './slice';
 import {
-  selectLayout,
+  selectLayouts,
   selectItemDetails,
   selectShowHint,
   selectRandomNumber,
 } from './selectors';
 import { homePageSaga } from './saga';
 
-import { Layout } from 'react-grid-layout';
+import { Layout, Layouts } from 'react-grid-layout';
 import { GridLayout } from './components/GridLayout';
 import {
   generateRandomLayout,
   generateCondensedTimelineLayout,
 } from './components/GridLayout/generateLayouts';
 import { PersonalHeader } from './components/PersonalHeader';
+
+import _ from 'lodash';
 
 interface Props {}
 
@@ -35,7 +37,7 @@ export const HomePage = memo((props: Props) => {
 
   const dispatch = useDispatch();
   const itemDetails = useSelector(selectItemDetails);
-  const layout = useSelector(selectLayout);
+  const layouts = useSelector(selectLayouts);
   const showHint = useSelector(selectShowHint);
   const randomNumber = useSelector(selectRandomNumber);
 
@@ -44,30 +46,47 @@ export const HomePage = memo((props: Props) => {
     useEffect(effect, [itemDetails]);
   };
   useEffectOnMount(() => {
-    if (itemDetails.length === 0 || layout.length === 0) {
+    if (itemDetails.length === 0 || _.flatten(_.values(layouts)).length === 0) {
       // Load the items.
       dispatch(homePageActions.loadItems());
       // Start with a randomized layout.
-      dispatch(
-        homePageActions.setLayout(generateRandomLayout(itemDetails.length)),
-      );
+      const randomLayout = generateRandomLayout(itemDetails.length);
+      const allLayouts: Layouts = {
+        lg: randomLayout,
+        md: randomLayout,
+        sm: randomLayout,
+        xs: randomLayout,
+        xxs: randomLayout,
+      };
+      dispatch(homePageActions.setLayouts(allLayouts));
     }
   });
 
-  const onLayoutChange = (layout: Layout[]) => {
-    dispatch(homePageActions.setLayout(layout));
+  const onLayoutChange = (layout: Layout[], allLayouts: Layouts) => {
+    dispatch(homePageActions.setLayouts(allLayouts));
   };
 
   const onClickRandomize = () => {
-    dispatch(
-      homePageActions.setLayout(generateRandomLayout(itemDetails.length)),
-    );
+    const randomLayout = generateRandomLayout(itemDetails.length);
+    const allLayouts: Layouts = {
+      lg: randomLayout,
+      md: randomLayout,
+      sm: randomLayout,
+      xs: randomLayout,
+      xxs: randomLayout,
+    };
+    dispatch(homePageActions.setLayouts(allLayouts));
   };
 
   const onClickTimeline = () => {
-    dispatch(
-      homePageActions.setLayout(generateCondensedTimelineLayout(itemDetails)),
-    );
+    const allLayouts: Layouts = {
+      lg: generateCondensedTimelineLayout(itemDetails, 12),
+      md: generateCondensedTimelineLayout(itemDetails, 10),
+      sm: generateCondensedTimelineLayout(itemDetails, 6),
+      xs: generateCondensedTimelineLayout(itemDetails, 4),
+      xxs: generateCondensedTimelineLayout(itemDetails, 3),
+    };
+    dispatch(homePageActions.setLayouts(allLayouts));
     dispatch(homePageActions.stopShowingHint());
   };
   return (
@@ -79,7 +98,7 @@ export const HomePage = memo((props: Props) => {
       <Div>
         <PersonalHeader />
         <GridLayout
-          layout={layout}
+          layouts={layouts}
           itemDetails={itemDetails}
           onLayoutChange={onLayoutChange}
           onClickRandomize={onClickRandomize}

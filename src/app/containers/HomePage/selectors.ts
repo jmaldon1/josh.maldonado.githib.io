@@ -10,9 +10,9 @@ export const selectHomePage = createSelector(
   homePageState => homePageState,
 );
 
-export const selectLayout = createSelector(
+export const selectLayouts = createSelector(
   [selectDomain],
-  homePageState => homePageState.layout,
+  homePageState => homePageState.layouts,
 );
 
 export const selectItemDetails = createSelector(

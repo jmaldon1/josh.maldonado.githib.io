@@ -6,7 +6,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components/macro';
 
-import RGL, { WidthProvider, Layout } from 'react-grid-layout';
+import { WidthProvider, Responsive, Layout, Layouts } from 'react-grid-layout';
 import _ from 'lodash';
 
 import { GridLayoutStyle } from './styles';
@@ -15,12 +15,12 @@ import { BasicCard } from '../BasicCard';
 import { DateSeperator } from '../DateSeperator';
 import { BaseItem } from '../BaseItem';
 
-const ReactGridLayout = WidthProvider(RGL);
+const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface Props {
-  layout: any;
+  layouts: Layouts;
   itemDetails: Item[];
-  onLayoutChange: (layout: Layout[]) => void;
+  onLayoutChange: (layout: Layout[], allLayouts: Layouts) => void;
   onClickTimeline: React.MouseEventHandler<HTMLButtonElement>;
   onClickRandomize: React.MouseEventHandler<HTMLButtonElement>;
   showHint: boolean;
@@ -29,7 +29,7 @@ interface Props {
 
 export const GridLayout = memo(
   ({
-    layout,
+    layouts,
     itemDetails,
     onLayoutChange,
     onClickTimeline,
@@ -43,22 +43,21 @@ export const GridLayout = memo(
           <h4 id="Headline">What am I up to?</h4>
         </TextCenteredDiv>
         <TextCenteredDiv>
-          {GenerateLayoutButtons(onClickTimeline, onClickRandomize, showHint)}
+          {LayoutButtons(onClickTimeline, onClickRandomize, showHint)}
         </TextCenteredDiv>
-        <ReactGridLayout
+        <ResponsiveGridLayout
           draggableHandle=".draggable"
-          layout={layout}
+          layouts={layouts}
           isBounded={true}
           className="layout"
           rowHeight={30}
-          cols={12}
-          // breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-          // cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+          breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+          cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 3 }}
           onLayoutChange={onLayoutChange}
           compactType={null}
         >
-          {generateDOM(layout, itemDetails, randomNumber)}
-        </ReactGridLayout>
+          {generateDOM(layouts.lg, itemDetails, randomNumber)}
+        </ResponsiveGridLayout>
         <GridLayoutStyle />
       </Div>
     );
@@ -83,7 +82,7 @@ const displayHint = (showHint: boolean) => {
   return <small>HINT: press this ---&gt;</small>;
 };
 
-const GenerateLayoutButtons = (
+const LayoutButtons = (
   onClickTimeline: React.MouseEventHandler<HTMLButtonElement>,
   onClickRandomize: React.MouseEventHandler<HTMLButtonElement>,
   showHint: boolean,

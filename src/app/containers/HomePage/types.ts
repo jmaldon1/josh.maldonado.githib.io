@@ -1,11 +1,11 @@
-import { Layout } from 'react-grid-layout';
+import { Layout, Layouts } from 'react-grid-layout';
 
 import { BasicCard } from './components/BasicCard';
 import { DateSeperator } from './components/DateSeperator';
 
 /* --- STATE --- */
 export interface HomePageState {
-  layout: Layout[];
+  layouts: Layouts;
   itemDetails: Item[];
   showHint: boolean;
   randomNumber: number;
