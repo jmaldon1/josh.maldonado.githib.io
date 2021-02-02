@@ -77,7 +77,7 @@ const TextCenteredDiv = styled.div`
   justify-content: center;
 `;
 
-const displayHint = (showHint: boolean) => {
+const DisplayHint = ({ showHint }) => {
   if (!showHint) return null;
   return <small>HINT: press this ---&gt;</small>;
 };
@@ -89,7 +89,7 @@ const LayoutButtons = (
 ) => {
   return (
     <div>
-      {displayHint(showHint)}
+      <DisplayHint showHint={showHint} />
       <Divider />
       <button id="timeline-button" onClick={onClickTimeline}>
         Timeline
