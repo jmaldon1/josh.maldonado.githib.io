@@ -104,7 +104,7 @@ export const HomePage = memo((props: Props) => {
   return (
     <>
       <Helmet>
-        <title>HomePage</title>
+        <title>Home</title>
         <meta name="description" content="Josh's Timeline" />
       </Helmet>
       <Div>
