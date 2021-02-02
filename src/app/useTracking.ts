@@ -1,5 +1,6 @@
 /**
  * Google Analytics tracking hook.
+ * Credit: https://medium.com/javascript-in-plain-english/google-analytics-with-react-router-and-hooks-16d403ddc528
  */
 
 import { useEffect } from 'react';
