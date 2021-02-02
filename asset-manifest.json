@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/josh.maldonado.githib.io/static/js/main.55afd991.chunk.js",
-    "runtime-main.js": "/josh.maldonado.githib.io/static/js/runtime-main.8d0d7d7d.js",
+    "main.js": "/josh.maldonado.githib.io/static/js/main.cd1963b1.chunk.js",
+    "runtime-main.js": "/josh.maldonado.githib.io/static/js/runtime-main.4578b746.js",
     "static/css/2.2858c196.chunk.css": "/josh.maldonado.githib.io/static/css/2.2858c196.chunk.css",
     "static/js/2.d70ce71c.chunk.js": "/josh.maldonado.githib.io/static/js/2.d70ce71c.chunk.js",
     "static/js/3.8a648a45.chunk.js": "/josh.maldonado.githib.io/static/js/3.8a648a45.chunk.js",
-    "static/js/4.7ec378a6.chunk.js": "/josh.maldonado.githib.io/static/js/4.7ec378a6.chunk.js",
+    "static/js/4.076746c3.chunk.js": "/josh.maldonado.githib.io/static/js/4.076746c3.chunk.js",
     "static/js/5.86c4fcc2.chunk.js": "/josh.maldonado.githib.io/static/js/5.86c4fcc2.chunk.js",
     "static/js/6.e9c66f34.chunk.js": "/josh.maldonado.githib.io/static/js/6.e9c66f34.chunk.js",
     "static/js/7.2419a16b.chunk.js": "/josh.maldonado.githib.io/static/js/7.2419a16b.chunk.js",
@@ -30,9 +30,9 @@
     "static/media/wip-banner.png": "/josh.maldonado.githib.io/static/media/wip-banner.d7815366.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.8d0d7d7d.js",
+    "static/js/runtime-main.4578b746.js",
     "static/css/2.2858c196.chunk.css",
     "static/js/2.d70ce71c.chunk.js",
-    "static/js/main.55afd991.chunk.js"
+    "static/js/main.cd1963b1.chunk.js"
   ]
 }
