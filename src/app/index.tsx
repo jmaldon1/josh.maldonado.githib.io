@@ -16,8 +16,23 @@ import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 
+import { useTracking } from './useTracking';
+
+const Routes = () => {
+  // Google Analytics
+  useTracking();
+
+  return (
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route component={NotFoundPage} />
+    </Switch>
+  );
+};
+
 export function App() {
   const { i18n } = useTranslation();
+
   return (
     <BrowserRouter basename="/josh.maldonado.githib.io">
       <Helmet
@@ -28,10 +43,7 @@ export function App() {
         <meta name="description" content="Josh Maldonado's personal website" />
       </Helmet>
 
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Routes />
       <GlobalStyle />
     </BrowserRouter>
   );

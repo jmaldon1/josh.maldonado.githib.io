@@ -30,10 +30,6 @@ import { PersonalHeader } from './components/PersonalHeader';
 import ReactGA from 'react-ga';
 import _ from 'lodash';
 
-// Google Analytics
-ReactGA.initialize('G-814B22G7SF');
-ReactGA.pageview(window.location.pathname + window.location.search);
-
 interface Props {}
 
 export const HomePage = memo((props: Props) => {
@@ -45,6 +41,16 @@ export const HomePage = memo((props: Props) => {
   const layouts = useSelector(selectLayouts);
   const showHint = useSelector(selectShowHint);
   const randomNumber = useSelector(selectRandomNumber);
+
+  const useEffectOnMountGoogleAnayltics = (effect: React.EffectCallback) => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(effect, []);
+  };
+  useEffectOnMountGoogleAnayltics(() => {
+    // Google Analytics
+    ReactGA.initialize('G-814B22G7SF');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
 
   const useEffectOnMount = (effect: React.EffectCallback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
