@@ -122,17 +122,19 @@ export function generateCondensedTimelineLayout(
 }
 
 export function generateRandomLayout(numItems: number): Layout[] {
-  return _.map(_.range(numItems), function (item: any, i: number) {
-    // const w = Math.ceil(Math.random() * 4);
-    const y = Math.ceil(Math.random() * 4) + 1;
-    return {
-      x: Math.round(Math.random() * 5) * 2,
-      y: Math.floor(i / 6) * y,
-      w: 3,
-      h: 8,
-      i: i.toString(),
-    };
-  });
+  return _.shuffle(
+    _.map(_.range(numItems), function (item: any, i: number) {
+      // const w = Math.ceil(Math.random() * 4);
+      const y = Math.ceil(Math.random() * 4) + 1;
+      return {
+        x: Math.round(Math.random() * 5) * 2,
+        y: Math.floor(i / 6) * y,
+        w: 3,
+        h: 8,
+        i: i.toString(),
+      };
+    }),
+  );
 }
 
 function isInt(value: any): boolean {
