@@ -123,7 +123,7 @@ export function generateCondensedTimelineLayout(
 }
 
 export function generateRandomLayout(numItems: number): Layout[] {
-  return _.map(_.range(numItems), function (item: any, i: number) {
+  return _.map(_.range(numItems), (item: any, i: number) => {
     // const w = Math.ceil(Math.random() * 4);
     const y = Math.ceil(Math.random() * 4) + 1;
     return {
