@@ -24,27 +24,27 @@ export function generateCondensedTimelineLayout(
       result: CTimelineReduceResultTuple,
       item: Item,
     ): CTimelineReduceResultTuple => {
-      const [splitLayouts, maxY, date, prevItem] = result;
+      const [splitLayouts, maxY, prevDate, prevLayout] = result;
 
       const isNewRow = ((): boolean => {
         // Initial row
-        if (prevItem === null) return true;
+        if (prevLayout === null) return true;
         // This item needs to overflow to next row.
-        if (prevItem.x + prevItem.w + w > cols) return true;
+        if (prevLayout.x + prevLayout.w + w > cols) return true;
         return false;
       })();
-      const isNewDate = date !== item.date;
+      const isNewDate = item.date !== prevDate;
 
-      const prevY = prevItem === null ? 0 : prevItem.y;
-      const prevX = prevItem === null ? 0 : prevItem.x;
+      const prevY = prevLayout === null ? 0 : prevLayout.y;
+      const prevX = prevLayout === null ? 0 : prevLayout.x;
 
       const x = isNewRow ? 0 : prevX + w;
       const y = isNewRow ? maxY + 2 : prevY;
       const newMaxY = Math.max(maxY, y + h);
 
-      const totalItems = _.flatten(_.values(splitLayouts)).length;
-      const nextItem = {
-        i: totalItems.toString(),
+      const totalLayoutItems = _.flatten(_.values(splitLayouts)).length;
+      const layout = {
+        i: totalLayoutItems.toString(),
         x: x,
         w: w,
         y: y,
@@ -77,7 +77,7 @@ export function generateCondensedTimelineLayout(
         })();
 
         const layoutGroup = updatedDateSplitLayouts[keyName];
-        const newLayoutGroup = _.concat(layoutGroup, nextItem);
+        const newLayoutGroup = _.concat(layoutGroup, layout);
         return {
           ...updatedDateSplitLayouts,
           [keyName]: newLayoutGroup,
@@ -85,14 +85,14 @@ export function generateCondensedTimelineLayout(
       })();
 
       return [
-        // layout
+        // layout accumulation
         newDateSplitLayouts,
         // maxY
         newMaxY,
-        // date
+        // prevDate
         item.date,
-        // prevItem
-        nextItem,
+        // prevLayout
+        layout,
       ];
     },
     [{}, -1, '', null],
