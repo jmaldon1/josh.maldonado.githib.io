@@ -19,8 +19,10 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface Props {
   layouts: Layouts;
+  breakpoint: string;
   itemDetails: Item[];
   onLayoutChange: (layout: Layout[], allLayouts: Layouts) => void;
+  onBreakpointChange: (newBreakpoint: string, newCols: number) => void;
   onClickTimeline: React.MouseEventHandler<HTMLButtonElement>;
   onClickRandomize: React.MouseEventHandler<HTMLButtonElement>;
   showHint: boolean;
@@ -30,13 +32,16 @@ interface Props {
 export const GridLayout = memo(
   ({
     layouts,
+    breakpoint,
     itemDetails,
     onLayoutChange,
+    onBreakpointChange,
     onClickTimeline,
     onClickRandomize,
     showHint,
     randomNumber,
   }: Props) => {
+    const currentLayout = layouts[breakpoint];
     return (
       <Div>
         <TextCenteredDiv>
@@ -54,9 +59,10 @@ export const GridLayout = memo(
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 3 }}
           onLayoutChange={onLayoutChange}
+          onBreakpointChange={onBreakpointChange}
           compactType={null}
         >
-          {generateDOM(layouts.lg, itemDetails, randomNumber)}
+          {generateDOM(currentLayout, itemDetails, randomNumber)}
         </ResponsiveGridLayout>
         <GridLayoutStyle />
       </Div>

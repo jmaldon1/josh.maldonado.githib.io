@@ -6,6 +6,7 @@ import { DateSeperator } from './components/DateSeperator';
 /* --- STATE --- */
 export interface HomePageState {
   layouts: Layouts;
+  breakpoint: string;
   itemDetails: Item[];
   showHint: boolean;
   randomNumber: number;

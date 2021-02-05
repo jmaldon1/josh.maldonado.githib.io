@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { ContainerState, Item } from './types';
 
-import { Layouts } from 'react-grid-layout';
+import { Layouts, Layout } from 'react-grid-layout';
 
 // The initial state of the HomePage container
 export const initialState: ContainerState = {
@@ -13,6 +13,7 @@ export const initialState: ContainerState = {
     xs: [],
     xxs: [],
   },
+  breakpoint: 'lg',
   itemDetails: [],
   showHint: true,
   randomNumber: Math.random(),
@@ -27,6 +28,17 @@ const homePageSlice = createSlice({
     },
     setLayouts(state, action: PayloadAction<Layouts>) {
       state.layouts = action.payload;
+    },
+    setLayout(state, action: PayloadAction<[string, Layout[]]>) {
+      const [breakpoint, layout] = action.payload;
+      // state.layouts = {
+      //   ...state.layouts,
+      //   [breakpoint]: layout,
+      // };
+      state.layouts[breakpoint] = layout;
+    },
+    setBreakpoint(state, action: PayloadAction<string>) {
+      state.breakpoint = action.payload;
     },
     setItemDetails(state, action: PayloadAction<Item[]>) {
       state.itemDetails = action.payload;

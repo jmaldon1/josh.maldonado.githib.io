@@ -33,6 +33,7 @@ export function generateCondensedTimelineLayout(
         if (prevItem.x + prevItem.w + w > cols) return true;
         return false;
       })();
+      const isNewDate = date !== item.date;
 
       const prevY = prevItem === null ? 0 : prevItem.y;
       const prevX = prevItem === null ? 0 : prevItem.x;
@@ -56,7 +57,7 @@ export function generateCondensedTimelineLayout(
             return _.includes(key, item.date);
           });
 
-          if (isNewRow || date !== item.date) {
+          if (isNewRow || isNewDate) {
             // New key name
             const keyNum = matchingKeys.length;
             return `${item.date}_${keyNum}`;
@@ -66,7 +67,7 @@ export function generateCondensedTimelineLayout(
         })();
 
         const updatedDateSplitLayouts = ((): DateSplitLayout => {
-          if (isNewRow || date !== item.date) {
+          if (isNewRow || isNewDate) {
             return {
               ...splitLayouts,
               [keyName]: [],

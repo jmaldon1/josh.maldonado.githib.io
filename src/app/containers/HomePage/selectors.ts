@@ -15,6 +15,11 @@ export const selectLayouts = createSelector(
   homePageState => homePageState.layouts,
 );
 
+export const selectBreakpoint = createSelector(
+  [selectDomain],
+  homePageState => homePageState.breakpoint,
+);
+
 export const selectItemDetails = createSelector(
   [selectDomain],
   homePageState => homePageState.itemDetails,

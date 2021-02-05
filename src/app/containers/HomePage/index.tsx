@@ -13,6 +13,7 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { homePageActions, reducer, sliceKey } from './slice';
 import {
   selectLayouts,
+  selectBreakpoint,
   selectItemDetails,
   selectShowHint,
   selectRandomNumber,
@@ -41,6 +42,7 @@ export const HomePage = memo((props: Props) => {
   const layouts = useSelector(selectLayouts);
   const showHint = useSelector(selectShowHint);
   const randomNumber = useSelector(selectRandomNumber);
+  const breakpoint = useSelector(selectBreakpoint);
 
   const useEffectOnMountGoogleAnayltics = (effect: React.EffectCallback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,6 +76,18 @@ export const HomePage = memo((props: Props) => {
   });
 
   const onLayoutChange = (layout: Layout[], allLayouts: Layouts) => {
+    dispatch(homePageActions.setLayouts(allLayouts));
+  };
+
+  const onBreakpointChange = (newBreakpoint: string, newCols: number) => {
+    dispatch(homePageActions.setBreakpoint(newBreakpoint));
+    const allLayouts: Layouts = {
+      lg: generateCondensedTimelineLayout(itemDetails, 12),
+      md: generateCondensedTimelineLayout(itemDetails, 10),
+      sm: generateCondensedTimelineLayout(itemDetails, 6),
+      xs: generateCondensedTimelineLayout(itemDetails, 4),
+      xxs: generateCondensedTimelineLayout(itemDetails, 3),
+    };
     dispatch(homePageActions.setLayouts(allLayouts));
   };
 
@@ -111,8 +125,10 @@ export const HomePage = memo((props: Props) => {
         <PersonalHeader />
         <GridLayout
           layouts={layouts}
+          breakpoint={breakpoint}
           itemDetails={itemDetails}
           onLayoutChange={onLayoutChange}
+          onBreakpointChange={onBreakpointChange}
           onClickRandomize={onClickRandomize}
           onClickTimeline={onClickTimeline}
           showHint={showHint}
