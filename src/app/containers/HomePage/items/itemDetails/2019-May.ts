@@ -9,7 +9,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
       name: 'graduation-banner.png',
     },
     details: `
-    Graduated from Stevens Insitute of Technology.
+    Graduated from Stevens Institute of Technology.
     `,
     component: 'BasicCard',
   },
