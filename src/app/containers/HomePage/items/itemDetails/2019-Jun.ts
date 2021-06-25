@@ -10,7 +10,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     </a>
     `,
     image: {
-      name: 'bitcoin-banner.png',
+      name: 'bitcoin.png',
     },
     details: `
     <ul>

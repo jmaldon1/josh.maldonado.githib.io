@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'Started Musher, my first full fledged python module',
     image: {
-      name: 'wip-banner.png',
+      name: 'musher_wip.png',
     },
     details: `
     Goals:

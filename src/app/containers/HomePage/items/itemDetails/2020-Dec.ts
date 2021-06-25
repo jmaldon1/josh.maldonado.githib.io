@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'Learning to play guitar',
     image: {
-      name: 'electric-guitar.jpg',
+      name: 'guitar.png',
     },
     details: 'Bought an electric guitar, finally learning to play.',
     component: 'BasicCard',

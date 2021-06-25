@@ -6,6 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'a',
     image: {
+      // Optimal image size: 6900 x 2000
       name: null,
     },
     details: 'details about the item.',

@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'Graduated college',
     image: {
-      name: 'graduation-banner.png',
+      name: 'graduated.png',
     },
     details: `
     Graduated from Stevens Institute of Technology.

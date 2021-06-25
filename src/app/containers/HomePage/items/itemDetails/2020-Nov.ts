@@ -21,7 +21,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     </ul>
     `,
     image: {
-      name: 'audio_waves.jpg',
+      name: 'musher.png',
     },
     component: 'BasicCard',
   },

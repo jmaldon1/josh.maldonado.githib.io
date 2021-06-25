@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'Attended Strange Loop',
     image: {
-      name: 'strange-loop-banner.png',
+      name: 'strange_loop.png',
     },
     details: `
     <ul>

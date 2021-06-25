@@ -6,7 +6,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'Created personal website!',
     image: {
-      name: 'react-banner.jpg',
+      name: 'personal_website.png',
     },
     details: `
     <ul>
@@ -22,7 +22,7 @@ export const itemDetailsWithoutId: ItemWithoutId[] = [
     priority: 1,
     title: 'Mock Database Models',
     image: {
-      name: 'db-model-banner.png',
+      name: 'mock_plugins_db.png',
     },
     details: `
     <ul>
