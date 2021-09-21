@@ -1,25 +1,27 @@
 {
   "files": {
-    "main.js": "/josh.maldonado.githib.io/static/js/main.5bd8ff8f.chunk.js",
-    "runtime-main.js": "/josh.maldonado.githib.io/static/js/runtime-main.234f73c5.js",
+    "main.js": "/josh.maldonado.githib.io/static/js/main.76de55bc.chunk.js",
+    "runtime-main.js": "/josh.maldonado.githib.io/static/js/runtime-main.cd6b66e5.js",
     "static/css/2.2858c196.chunk.css": "/josh.maldonado.githib.io/static/css/2.2858c196.chunk.css",
     "static/js/2.d70ce71c.chunk.js": "/josh.maldonado.githib.io/static/js/2.d70ce71c.chunk.js",
-    "static/js/3.c757461d.chunk.js": "/josh.maldonado.githib.io/static/js/3.c757461d.chunk.js",
-    "static/js/4.17518ec1.chunk.js": "/josh.maldonado.githib.io/static/js/4.17518ec1.chunk.js",
-    "static/js/5.09822a33.chunk.js": "/josh.maldonado.githib.io/static/js/5.09822a33.chunk.js",
-    "static/js/6.09e1e62b.chunk.js": "/josh.maldonado.githib.io/static/js/6.09e1e62b.chunk.js",
-    "static/js/7.ac128f8a.chunk.js": "/josh.maldonado.githib.io/static/js/7.ac128f8a.chunk.js",
-    "static/js/8.bb3a17da.chunk.js": "/josh.maldonado.githib.io/static/js/8.bb3a17da.chunk.js",
-    "static/js/9.58775a36.chunk.js": "/josh.maldonado.githib.io/static/js/9.58775a36.chunk.js",
-    "static/js/10.c07d8074.chunk.js": "/josh.maldonado.githib.io/static/js/10.c07d8074.chunk.js",
-    "static/js/11.5fa07bfa.chunk.js": "/josh.maldonado.githib.io/static/js/11.5fa07bfa.chunk.js",
-    "static/js/12.ab79810d.chunk.js": "/josh.maldonado.githib.io/static/js/12.ab79810d.chunk.js",
-    "static/js/13.a1ec4db9.chunk.js": "/josh.maldonado.githib.io/static/js/13.a1ec4db9.chunk.js",
+    "static/js/3.c2f3101f.chunk.js": "/josh.maldonado.githib.io/static/js/3.c2f3101f.chunk.js",
+    "static/js/4.f7d94f11.chunk.js": "/josh.maldonado.githib.io/static/js/4.f7d94f11.chunk.js",
+    "static/js/5.b83ad119.chunk.js": "/josh.maldonado.githib.io/static/js/5.b83ad119.chunk.js",
+    "static/js/6.d42fbcab.chunk.js": "/josh.maldonado.githib.io/static/js/6.d42fbcab.chunk.js",
+    "static/js/7.15ea8b80.chunk.js": "/josh.maldonado.githib.io/static/js/7.15ea8b80.chunk.js",
+    "static/js/8.e398ed29.chunk.js": "/josh.maldonado.githib.io/static/js/8.e398ed29.chunk.js",
+    "static/js/9.c290f7b1.chunk.js": "/josh.maldonado.githib.io/static/js/9.c290f7b1.chunk.js",
+    "static/js/10.aeade75f.chunk.js": "/josh.maldonado.githib.io/static/js/10.aeade75f.chunk.js",
+    "static/js/11.2482b8cb.chunk.js": "/josh.maldonado.githib.io/static/js/11.2482b8cb.chunk.js",
+    "static/js/12.d93d77e2.chunk.js": "/josh.maldonado.githib.io/static/js/12.d93d77e2.chunk.js",
+    "static/js/13.303a6965.chunk.js": "/josh.maldonado.githib.io/static/js/13.303a6965.chunk.js",
+    "static/js/14.57aba9dd.chunk.js": "/josh.maldonado.githib.io/static/js/14.57aba9dd.chunk.js",
     "index.html": "/josh.maldonado.githib.io/index.html",
     "static/js/2.d70ce71c.chunk.js.LICENSE.txt": "/josh.maldonado.githib.io/static/js/2.d70ce71c.chunk.js.LICENSE.txt",
-    "static/js/3.c757461d.chunk.js.LICENSE.txt": "/josh.maldonado.githib.io/static/js/3.c757461d.chunk.js.LICENSE.txt",
+    "static/js/3.c2f3101f.chunk.js.LICENSE.txt": "/josh.maldonado.githib.io/static/js/3.c2f3101f.chunk.js.LICENSE.txt",
     "static/media/bitcoin.png": "/josh.maldonado.githib.io/static/media/bitcoin.f939e7b3.png",
     "static/media/drag-handle.f598b792.svg": "/josh.maldonado.githib.io/static/media/drag-handle.f598b792.svg",
+    "static/media/fast-api-banner.png": "/josh.maldonado.githib.io/static/media/fast-api-banner.cb10e254.png",
     "static/media/game_addon.png": "/josh.maldonado.githib.io/static/media/game_addon.d6768fa3.png",
     "static/media/github-1.04be58c1.svg": "/josh.maldonado.githib.io/static/media/github-1.04be58c1.svg",
     "static/media/graduated.png": "/josh.maldonado.githib.io/static/media/graduated.289978a7.png",
@@ -32,9 +34,9 @@
     "static/media/strange_loop.png": "/josh.maldonado.githib.io/static/media/strange_loop.9aad2c6d.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.234f73c5.js",
+    "static/js/runtime-main.cd6b66e5.js",
     "static/css/2.2858c196.chunk.css",
     "static/js/2.d70ce71c.chunk.js",
-    "static/js/main.5bd8ff8f.chunk.js"
+    "static/js/main.76de55bc.chunk.js"
   ]
 }
