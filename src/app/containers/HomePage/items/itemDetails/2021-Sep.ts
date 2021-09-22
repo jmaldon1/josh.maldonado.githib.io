@@ -2,7 +2,7 @@ import { ItemWithoutId } from '../../types';
 
 export const itemDetailsWithoutId: ItemWithoutId[] = [
   {
-    date: '2021-Mar',
+    date: '2021-Sep',
     priority: 3,
     title: `Building API's with <a target="_blank" rel="noopener noreferrer" href="https://github.com/tiangolo/fastapi">Fast API</a>`,
     details: `
